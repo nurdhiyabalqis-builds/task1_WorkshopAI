@@ -1,0 +1,95 @@
+/* style.css — mobile-first, high-contrast, large touch targets for phones */
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1e40af;
+  --bg: #f0f9ff;
+  --card: #ffffff;
+  --text: #1e293b;
+  --success: #16a34a;
+  --danger: #dc2626;
+  --radius: 12px;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; font-family: system-ui, sans-serif;
+  background: var(--bg); color: var(--text);
+  min-height: 100vh; display: flex; flex-direction: column;
+}
+header {
+  background: var(--primary); color: #fff; padding: 12px 16px;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+}
+header h1 { margin: 0; font-size: 1.3rem; }
+header button {
+  background: rgba(255,255,255,0.2); color: #fff; border: 1px solid rgba(255,255,255,0.5);
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
+}
+main { flex: 1; padding: 16px; max-width: 720px; width: 100%; margin: 0 auto; }
+footer { text-align: center; padding: 12px; color: #64748b; }
+
+.hero { text-align: center; margin: 16px 0 24px; }
+.hero h2 { font-size: 1.6rem; }
+.hero p { color: #475569; }
+
+.card {
+  background: var(--card); border-radius: var(--radius);
+  padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+.tab { flex: 1; padding: 10px; border: 2px solid var(--primary); background: transparent; color: var(--primary); border-radius: 8px; cursor: pointer; font-weight: 600; }
+.tab.active { background: var(--primary); color: #fff; }
+
+label { display: block; margin: 12px 0 4px; font-weight: 600; }
+input, select {
+  width: 100%; padding: 12px; font-size: 1rem;
+  border: 2px solid #cbd5e1; border-radius: 8px;
+}
+input:focus, select:focus, button:focus-visible { outline: 3px solid #93c5fd; }
+
+button.primary {
+  width: 100%; margin-top: 16px; padding: 14px; font-size: 1.05rem;
+  background: var(--primary); color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;
+}
+button.primary:hover { background: var(--primary-dark); }
+
+.message { padding: 12px; border-radius: 8px; margin-bottom: 16px; font-weight: 600; }
+.message.error { background: #fee2e2; color: var(--danger); }
+.message.success { background: #dcfce7; color: var(--success); }
+.message.loading { background: #e0f2fe; color: #0369a1; }
+
+.level-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.level-btn {
+  background: var(--card); border: 2px solid #cbd5e1; border-radius: var(--radius);
+  padding: 20px 12px; text-align: center; cursor: pointer; font-size: 1rem; font-weight: 600;
+  display: flex; flex-direction: column; gap: 6px; align-items: center;
+}
+.level-btn .icon { font-size: 2rem; }
+.level-btn .best { color: var(--success); font-size: 0.85rem; }
+.level-btn:hover { border-color: var(--primary); }
+
+.progress-bar { height: 10px; background: #cbd5e1; border-radius: 5px; margin-bottom: 16px; overflow: hidden; }
+#quiz-progress { height: 100%; background: var(--primary); width: 0; transition: width 0.3s; }
+
+.question { margin-bottom: 12px; font-size: 1.15rem; font-weight: 600; }
+.options button {
+  display: block; width: 100%; margin: 10px 0; padding: 14px; text-align: left;
+  font-size: 1rem; background: var(--card); border: 2px solid #cbd5e1;
+  border-radius: 8px; cursor: pointer; min-height: 48px;
+}
+.options button:hover { border-color: var(--primary); }
+.options button.selected { border-color: var(--primary); background: #dbeafe; }
+.options button.correct { border-color: var(--success); background: #dcfce7; }
+.options button.wrong { border-color: var(--danger); background: #fee2e2; }
+
+.result-score { font-size: 2.5rem; text-align: center; margin: 8px 0; }
+.review-item { padding: 10px; border-left: 4px solid var(--danger); margin: 8px 0; background: #fef2f2; border-radius: 4px; }
+.review-item.ok { border-left-color: var(--success); background: #f0fdf4; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+th, td { padding: 8px; border-bottom: 1px solid #e2e8f0; text-align: left; }
+th { background: #f1f5f9; }
+
+@media (max-width: 480px) {
+  .hero h2 { font-size: 1.3rem; }
+  main { padding: 12px; }
+  .card { padding: 16px; }
+}

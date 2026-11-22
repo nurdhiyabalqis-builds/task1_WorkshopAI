@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICT Quest — Learn computer basics by playing</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <main class="container">
+    <!-- HOME VIEW -->
+    <section id="home-view">
+      <header class="hero">
+        <h1>ICT Quest</h1>
+        <p class="tagline" id="tagline">Hello, future ICT star! Pick a mission and start learning.</p>
+      </header>
+
+      <section class="name-card" aria-labelledby="name-heading">
+        <h2 id="name-heading">What should we call you?</h2>
+        <label for="player-name">Your name (optional)</label>
+        <div class="name-row">
+          <input type="text" id="player-name" maxlength="20" placeholder="Type your name here" autocomplete="off" />
+          <button type="button" id="save-name">Save</button>
+        </div>
+        <p class="hint" id="name-status" role="status"></p>
+      </section>
+
+      <section class="missions" aria-labelledby="missions-heading">
+        <h2 id="missions-heading">Missions</h2>
+        <p class="points-line" id="points-line">Points: 0</p>
+        <ul id="mission-list" class="mission-list">
+          <li class="mission-card" data-mission="computer-basics">
+            <div class="mission-icon" aria-hidden="true">🖥️</div>
+            <div class="mission-info">
+              <h3>Mission 1 · Computer Basics</h3>
+              <p>Parts of a computer and what they do.</p>
+            </div>
+            <div class="mission-state" aria-label="Mission status">▶ Start</div>
+          </li>
+          <li class="mission-card locked" data-mission="keyboard-mouse">
+            <div class="mission-icon" aria-hidden="true">⌨️</div>
+            <div class="mission-info">
+              <h3>Mission 2 · Keyboard &amp; Mouse</h3>
+              <p>Learn the keys and control the mouse.</p>
+            </div>
+            <div class="mission-state" aria-label="Mission status">🔒 Locked</div>
+          </li>
+          <li class="mission-card locked" data-mission="word-processor">
+            <div class="mission-icon" aria-hidden="true">📝</div>
+            <div class="mission-info">
+              <h3>Mission 3 · Word Processor</h3>
+              <p>Bold, center and save your writing.</p>
+            </div>
+            <div class="mission-state" aria-label="Mission status">🔒 Locked</div>
+          </li>
+          <li class="mission-card locked" data-mission="spreadsheet">
+            <div class="mission-icon" aria-hidden="true">📊</div>
+            <div class="mission-info">
+              <h3>Mission 4 · Spreadsheet</h3>
+              <p>Cells, rows and simple formulas.</p>
+            </div>
+            <div class="mission-state" aria-label="Mission status">🔒 Locked</div>
+          </li>
+          <li class="mission-card locked" data-mission="presentation">
+            <div class="mission-icon" aria-hidden="true">🎬</div>
+            <div class="mission-info">
+              <h3>Mission 5 · Presentation</h3>
+              <p>Make slides that tell a story.</p>
+            </div>
+            <div class="mission-state" aria-label="Mission status">🔒 Locked</div>
+          </li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <button type="button" id="reset-progress">Reset my progress</button>
+      </footer>
+    </section>
+
+    <!-- QUIZ VIEW (Mission 1) -->
+    <section id="quiz-view" hidden aria-labelledby="quiz-heading">
+      <header class="hero">
+        <h1>Computer Basics Quiz</h1>
+        <p class="tagline">Answer the questions. Wrong answers give a hint — you can try again!</p>
+      </header>
+
+      <section class="name-card quiz-card">
+        <p class="quiz-progress" id="quiz-progress" role="status">Question 1 of 5 · Points: 0</p>
+        <h2 id="quiz-heading" class="quiz-question">Loading…</h2>
+        <ul class="quiz-options" id="quiz-options"></ul>
+        <p class="hint quiz-hint" id="quiz-hint" role="status"></p>
+        <div id="quiz-result" class="quiz-result" hidden>
+          <h2 id="quiz-result-title">Well done!</h2>
+          <p id="quiz-result-text"></p>
+          <p class="quiz-stars" id="quiz-stars" aria-label="Stars earned"></p>
+          <button type="button" id="quiz-again">Play again</button>
+          <button type="button" id="quiz-home">Back to missions</button>
+        </div>
+        <button type="button" id="quiz-back" class="quiz-back">← Back to missions</button>
+      </section>
+    </section>
+    <!-- KEYBOARD & MOUSE VIEW (Mission 2) -->
+    <section id="km-view" hidden aria-labelledby="km-heading">
+      <header class="hero">
+        <h1>Keyboard &amp; Mouse Skills</h1>
+        <p class="tagline">Two rounds: find the keys, then catch the targets with the mouse!</p>
+      </header>
+
+      <section class="name-card quiz-card">
+        <p class="quiz-progress" id="km-progress" role="status">Round 1 of 2 · Score: 0</p>
+        <h2 id="km-heading" class="quiz-question">Loading…</h2>
+
+        <div id="km-keyboard-round">
+          <p class="km-instruction">Press this key (on your keyboard or tap it below):</p>
+          <div class="km-bigkey" id="km-target-key" aria-live="polite">?</div>
+          <div class="km-keypad" id="km-keypad" aria-label="On-screen keyboard"></div>
+          <p class="hint" id="km-key-hint" role="status"></p>
+        </div>
+
+        <div id="km-mouse-round" hidden>
+          <p class="km-instruction">Click the green circles as fast as you can!</p>
+          <div class="km-arena" id="km-arena" aria-label="Clicking game area">
+            <p class="km-arena-start" id="km-arena-start">Get ready…</p>
+          </div>
+        </div>
+
+        <p class="hint" id="km-feedback" role="status"></p>
+        <div id="km-result" class="quiz-result" hidden>
+          <h2>Round complete!</h2>
+          <p id="km-result-text"></p>
+          <p class="quiz-stars" id="km-stars" aria-label="Stars earned"></p>
+          <button type="button" id="km-home">Back to missions</button>
+        </div>
+        <button type="button" id="km-back" class="quiz-back">← Back to missions</button>
+      </section>
+    </section>
+
+    <!-- WORD PROCESSOR VIEW (Mission 3) -->
+    <section id="wp-view" hidden aria-labelledby="wp-heading">
+      <header class="hero">
+        <h1>Word Processor Skills</h1>
+        <p class="tagline">Fix the document step by step — just like in Word!</p>
+      </header>
+
+      <section class="name-card quiz-card">
+        <p class="quiz-progress" id="wp-progress" role="status">Task 1 of 4 · Points: 0</p>
+        <h2 id="wp-heading" class="quiz-question">Loading…</h2>
+
+        <div class="wp-doc" id="wp-doc" aria-label="Sample document">
+          <p id="wp-line-title">my favorite animal</p>
+          <p id="wp-line-body">The cat sleeps on the sofa every day. it likes sunny spots.</p>
+        </div>
+
+        <p class="km-instruction" id="wp-instruction">Choose the right tool:</p>
+        <div class="wp-tools" id="wp-tools"></div>
+        <p class="hint" id="wp-feedback" role="status"></p>
+
+        <div id="wp-result" class="quiz-result" hidden>
+          <h2>Document finished!</h2>
+          <p id="wp-result-text"></p>
+          <p class="quiz-stars" id="wp-stars" aria-label="Stars earned"></p>
+          <button type="button" id="wp-home">Back to missions</button>
+        </div>
+        <button type="button" id="wp-back" class="quiz-back">← Back to missions</button>
+      </section>
+    </section>
+
+    <!-- SPREADSHEET VIEW (Mission 4) -->
+    <section id="ss-view" hidden aria-labelledby="ss-heading">
+      <header class="hero">
+        <h1>Spreadsheet Skills</h1>
+        <p class="tagline">Learn the cell grid — find the right cell every time!</p>
+      </header>
+
+      <section class="name-card quiz-card">
+        <p class="quiz-progress" id="ss-progress" role="status">Task 1 of 5 · Points: 0</p>
+        <h2 id="ss-heading" class="quiz-question">Loading…</h2>
+
+        <div class="ss-grid-wrap">
+          <div class="ss-grid" id="ss-grid" aria-label="Spreadsheet grid"></div>
+        </div>
+
+        <p class="hint" id="ss-feedback" role="status"></p>
+        <div id="ss-result" class="quiz-result" hidden>
+          <h2>Grid mastered!</h2>
+          <p id="ss-result-text"></p>
+          <p class="quiz-stars" id="ss-stars" aria-label="Stars earned"></p>
+          <button type="button" id="ss-home">Back to missions</button>
+        </div>
+        <button type="button" id="ss-back" class="quiz-back">← Back to missions</button>
+      </section>
+    </section>
+
+    <!-- PRESENTATION VIEW (Mission 5) -->
+    <section id="pp-view" hidden aria-labelledby="pp-heading">
+      <header class="hero">
+        <h1>Presentation Skills</h1>
+        <p class="tagline">Put the story slides in the right order!</p>
+      </header>
+
+      <section class="name-card quiz-card">
+        <p class="quiz-progress" id="pp-progress" role="status">Slide 1 of 5 · Points: 0</p>
+        <h2 id="pp-heading" class="quiz-question">Which slide comes next in the story?</h2>
+
+        <p class="km-instruction">Story so far:</p>
+        <ol class="pp-story" id="pp-story" aria-label="Story order so far"></ol>
+
+        <p class="km-instruction">Choose the next slide:</p>
+        <div class="pp-choices" id="pp-choices"></div>
+        <p class="hint" id="pp-feedback" role="status"></p>
+
+        <div id="pp-result" class="quiz-result" hidden>
+          <h2>Story complete!</h2>
+          <p id="pp-result-text"></p>
+          <p class="quiz-stars" id="pp-stars" aria-label="Stars earned"></p>
+          <button type="button" id="pp-home">Back to missions</button>
+        </div>
+        <button type="button" id="pp-back" class="quiz-back">← Back to missions</button>
+      </section>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/keyboard.js"></script>
+  <script src="js/word.js"></script>
+  <script src="js/spreadsheet.js"></script>
+  <script src="js/presentation.js"></script>
+</body>
+</html>
